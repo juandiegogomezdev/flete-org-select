@@ -1,27 +1,41 @@
-import '../styles/companiesSection.css'
-import '../styles/cardCompany.css'
-import { loadMemberships, } from '../api/memberships';
-import { applyFilter } from '../utils/companiesSection';
-import { membershipsList, setLoadingMemberships,
-    setMembershipsList } from './var';
+import "../styles/companiesSection.css";
+import "../styles/cardCompany.css";
+import { applyFilter } from "../utils/companiesSection";
+import {
+	addMembership,
+	setLoadingMemberships,
+	setMembershipsList,
+} from "./var";
+import { fetchCreatePersonalCompanyAndMembership, fetchMemberships } from "../api/memberships";
+
+loadMemberships();
 
 
-const companiesSection = document.getElementById('companiesSection');
-companiesSection.innerHTML = `
-    <div class="spaceHeader">
-        <h2 class="spaceSelected">Mis empresas</h2>
-        <p class="spaceDescription">Elije y administra tu empresa.</p>
-    </div>
-` + companiesSection.innerHTML;
+async function loadMemberships(){
+	fetchMemberships()
+	.then((memberships) => {
+		if (memberships.length === 0) {
+			CreatePersonalMembership();
+		}
+		setMembershipsList(memberships);
+	})
+	.catch((err) => {
+		// TODO: show error message to user
+		console.error("error loading memberships:", err);
+	})
+	.finally(() => {
+		setLoadingMemberships(false);
+		applyFilter();
+	});
 
-loadMemberships().then( memberships => {
-    setMembershipsList(memberships);
-    console.log("memberships loaded:", membershipsList);
-}).catch((err) => {
-    console.error("error loading memberships:", err);
-}).finally(()=>{
-    setLoadingMemberships(false);
+}
 
-    applyFilter();
-});
-
+async function CreatePersonalMembership(){
+	fetchCreatePersonalCompanyAndMembership()
+	.then((newMembership) => {
+		addMembership(newMembership);
+	})
+	.catch((err) => {
+		console.error("error creating personal company and membership:", err);
+	})
+}

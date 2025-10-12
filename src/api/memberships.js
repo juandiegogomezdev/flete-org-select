@@ -1,74 +1,67 @@
-import { refreshToken } from './token.js';
-import { applyFilter } from '../utils/companiesSection';
+import { handleApiResponse } from "./api";
 
 
 // Fetch memberships
-async function fetchMemberships() {
-  const response = await fetch(`${window.APP_CONFIG.api_url}/memberships`, {
-    credentials: 'include',
-  });
-  return response;
+export async function fetchMemberships() {
+	const response = await fetch(`${window.APP_CONFIG.api_url}/memberships`, {
+		credentials: "include",
+	});
+
+	const { response: res, err, action } = await handleApiResponse(response);
+
+	if (err) {
+		throw err;
+	}
+
+	if (action === "retry") {
+		return await fetchMemberships();
+	}
+
+	return res.data;
 }
 
-async function handleMembershipsResponse(response) {
-  if (response.ok) {
-    const { memberships } = await response.json();
-    if (memberships.length === 0) {
-      const createdMembership = await CreatePersonalMembership();
-      return [createdMembership];
-    }
-    return memberships;
-  }
+export async function fetchCreatePersonalCompanyAndMembership() {
+	const response = await fetch(
+		`${window.APP_CONFIG.api_url}/org/personal`,
+		{
+			method: "POST",
+			credentials: "include",
+		},
+	);
 
-  if (response.status === 401) {
-    const res = await response.json();
-    if (!res.details || res.details.token_status === "token_invalid") {
-      alert("invalid token, please login again");
-        //window.location.href = window.APP_CONFIG.base_url + '/static/login';
-      return null;
-    }
-    if (res.details.token_status === "token_expired") {
-      await refreshToken();
-      return await loadMemberships();
-    }
+	const { response: res, err, action } = await handleApiResponse(response);
 
+	if (err) {
+		throw err;
+	}
 
-    throw new Error("Unknown 401 error refreshing token");
-  }
+	if (action === "retry") {
+		return await fetchCreatePersonalCompanyAndMembership();
+	}
 
-  throw new Error("Estatus response unknown");
+	return res.data;
 }
 
-export async function loadMemberships() {
-    try {
-        const response = await fetchMemberships();
-        return await handleMembershipsResponse(response);
-    } catch (err) {
-        console.error("Error in loadMemberships: ", err);
-    }
-}
+export async function fetchCreateCompanyAndMembership(name) {
+	const response = await fetch(`${window.APP_CONFIG.api_url}/org/company`, {
+		method: "POST",
+		credentials: "include",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({ companyName: name }),
+	});
 
+	const { response: res, err, action} = await handleApiResponse(response);
 
-// Create personal membership
-async function CreatePersonalMembership() {
-  try {
-   
-    const response = await fetch(`${window.APP_CONFIG.api_url}/org/personal`, {
-      method: "POST",
-      credentials: "include",
-    });
-    if (response.ok) {
-      const res = await response.json();
-      return membershipsList = [res.membership];
-    } else if (response.status === 401) {
+	if (err) {
+		throw err;
+	}
+	
+	if (action === "retry") {
+		return await fetchCreateCompanyAndMembership(name);
+	}
 
-      await refreshToken();
-      await CreatePersonalMembership();
-
-    }
-    throw new Error("Error creating personal membership");
-  } catch (err) {
-    console.error("Error creating personal membership card:", err);
-  }
+	return res.data;
 
 }

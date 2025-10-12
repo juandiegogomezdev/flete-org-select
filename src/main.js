@@ -1,5 +1,7 @@
-import './styles/global.css'
-import './style.css'
+import "./styles/global.css";
+import "./style.css";
+import "material-icons/iconfont/material-icons.css";
+
 // import javascriptLogo from './javascript.svg'
 // import viteLogo from '/vite.svg'
 // import { setupCounter } from './counter.js'

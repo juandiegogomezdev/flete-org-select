@@ -1,0 +1,36 @@
+#spaceHeader {
+	/* margin: 0px 0 12px 0; */
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.spaceSelected {
+	margin: 0 0 4px 0;
+}
+
+.spaceDescription {
+	margin: 0 0 24px 0;
+	color: var(--color-gray-light);
+	font-size: 0.9rem;
+}
+
+#buttonOpenModalcreateCompany {
+	display: none;
+}
+
+@media (max-width: 600px) {
+	#spaceHeader {
+		display: block;
+		margin-bottom: 20px;
+	}
+
+	#createCompanyButton {
+		font-size: 1rem;
+		margin-bottom: 24px;
+	}
+
+	.spaceDescription {
+		margin-bottom: 12px;
+	}
+}

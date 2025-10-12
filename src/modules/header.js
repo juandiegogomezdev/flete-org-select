@@ -1,6 +1,6 @@
-import '../styles/header.css'
+import "../styles/header.css";
 
-document.getElementById('topPage').innerHTML = `
+document.getElementById("topPage").innerHTML = `
     <header >
         <h1>Selecciona tu espacio de trabajo</h1>
         <p>Organiza y gestiona tus trabajos y empresas desde un solo lugar.</p>
@@ -26,4 +26,4 @@ document.getElementById('topPage').innerHTML = `
             </div>
         </div>
     </section>
-`
+`;
