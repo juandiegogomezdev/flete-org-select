@@ -5,8 +5,9 @@
 }
 
 :root {
-	--color-gray-light: oklch(0.556 0.012 106.423);
-	--color-gray-dark: oklch(20.5% 0 0);
+	
+	--color-gray-light: oklch(55.6% 0 0);
+	--color-gray-dark: oklch(26.9% 0 0);
 
 	--color-red: oklch(80.8% 0.114 19.571);
 	--color-red-light: oklch(93.6% 0.032 17.717);
@@ -39,13 +40,14 @@
 	--shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
 	--shadow-2: 0 4px 10px rgba(0, 0, 0, 0.1);
 
-	--border-radius: 12px;
-	--border-radius-sm: 8px;
+	--border-radius: 16px;
+	--border-radius-sm: 12px;
 
 	--padding-modales: 24px 24px;
 	--padding-cards: 28px 28px;
 
 	--color-selected: oklch(0.486 0.218 264.052);
+	--color-border: oklch(92% 0.004 286.32);
 }
 
 html {
@@ -59,15 +61,18 @@ html {
 }
 
 body {
+	color: var(--color-gray-dark);
 	font-family: "inter", sans-serif;
 	max-width: 1350px;
 	margin: 0 auto;
 	padding: 12px 16px;
-	height: 100%;
+	
+	position: relative;
+	
 }
 
 main {
-	height: 100%;
+	margin-top: 16px;
 }
 
 input,
@@ -75,10 +80,12 @@ textarea {
 	width: 100%;
 	padding: 12px 12px;
 	font-size: 0.7rem;
-	border: 1px solid #ccc;
+	border: 1px solid var(--color-border);
 	border-radius: var(--border-radius-sm);
 	outline: none;
 	background-color: white;
+	color: var(--color-gray-dark);
+	font-family: 'inter', sans-serif;
 }
 
 input:focus,
@@ -94,7 +101,7 @@ textarea:focus {
 
 .card {
 	width: 100%;
-	border: 1px solid #eee;
+	border: 1px solid var(--color-border);
 	border-radius: var(--border-radius);
 	padding: var(--padding-cards);
 	box-shadow: var(--shadow);
@@ -107,9 +114,9 @@ textarea:focus {
 
 .button {
 	width: fit-content;
-	border-radius: var(--border-radius);
+	border-radius: var(--border-radius-sm);
 	font-size: 0.8rem;
-	padding: 12px 16px;
+	padding: 16px 16px;
 	font-weight: bold;
 	cursor: pointer;
 	border: none;
@@ -121,17 +128,26 @@ textarea:focus {
 }
 
 .buttonBlack {
-	background-color: var(--color-gray-dark);
-	opacity: 0.9;
+	background-color: #3b3b3b;
 }
 
 .buttonWhite {
 	color: var(--color-grey);
+	background-color: white;
 
-	background-color: var(--color-grey-lighter);
 	border: 1px solid var(--color-grey-light);
 }
 
 .buttonWhite:hover {
 	color: black;
+}
+
+
+ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	gap: 4px;
+	flex-direction: column;
 }

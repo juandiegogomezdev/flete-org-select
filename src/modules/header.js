@@ -6,11 +6,6 @@ document.getElementById("topPage").innerHTML = `
         <p>Organiza y gestiona tus trabajos y empresas desde un solo lugar.</p>
     </header>
     <section class="cardSection">
-        <div class="card cardSpace" data-space-id="independent">
-            <i class="material-icons">face</i>
-            <h4><b>Independiente</b></h4>
-            <p>Viajes y gastos como independiente</p>
-        </div>
         <div class="card cardSpace" data-space-id="my-companies">
             <i class="material-icons">domain</i>
             <div>

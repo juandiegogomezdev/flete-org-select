@@ -1,6 +1,7 @@
 h1 {
 	text-align: center;
 	margin: 4px 0 12px 0;
+	color: var(--color-gray-dark);
 }
 
 header p {
@@ -60,6 +61,7 @@ header p {
 }
 
 h4 {
+	color: var(--color-gray-dark);
 	text-align: center;
 	margin: 8px 0;
 }

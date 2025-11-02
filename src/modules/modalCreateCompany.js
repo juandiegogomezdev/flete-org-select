@@ -6,14 +6,14 @@ import { addMembership } from "./var";
 const modalCreateCompany = document.getElementById("modalCreateCompany");
 modalCreateCompany.innerHTML = `
     <div class="modalContent">
-        <div class="titleCreateCompany">Crear Nueva Empresa</div>
+        <div class="titleCreateCompany">Crear nueva empresa</div>
         <form id="createCompanyForm">
             <div class="inputGroup">
-                <label for="companyName">Nombre de la Empresa</label>
+                <label for="companyName">Nombre de la empresa</label>
                 <textarea id="companyName" name="companyName" required></textarea>
             </div>
             <div class="buttonsCreateCompany">
-                <button class="button buttonBlack" type="button" id="buttonModalCreateCompanyFetch">Crear Empresa</button>
+                <button class="button buttonBlack" type="button" id="buttonModalCreateCompanyFetch">Crear</button>
                 <button class="button buttonWhite" type="button" id="buttonModalCreateCompanyCancel">Cancelar</button>
             </div>
         </form>

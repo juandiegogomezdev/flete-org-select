@@ -2,25 +2,48 @@ nav {
 	position: sticky;
 	top: 10px;
 	left: 0;
-	margin-bottom: 24px;
 	margin-top: 8px;
-	height: 75px;
+	height: fit-content;
 
 	border: 1px solid var(--color-grey-light);
-	border-radius: var(--border-radius);
-	padding: 12px 20px;
-	/* background-color: var(--color-grey-lighter); */
+	border-radius: 1000px;
+	padding: 8px 16px;
 	background-color: white;
 	box-shadow: var(--shadow);
 	z-index: 100;
 
+	
+}
+
+
+.nav-content {
+
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+
+}
+
+
+/* Set nav bottom screen */
+@media (max-width: 600px) {
+	nav {
+		position: fixed;
+		bottom: 10px;
+		top: auto;
+		width: 80%;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+
+	body {
+		height: 100%;
+		padding-bottom: 52px;
+	}
 }
 
 #logo {
-	width: 130px;
+	width: 100px;
 
 	cursor: pointer;
 	transition: all 0.3s ease;
@@ -31,12 +54,10 @@ nav {
 }
 
 @media (max-width: 600px) {
-	nav {
-		padding: 12px 12px;
-	}
+
 
 	#logo {
-		width: 155px;
+		width: 5rem;
 	}
 }
 
@@ -58,16 +79,36 @@ nav {
 }
 
 #btn-logout {
-	color: white;
-	background-color: red;
-	border-radius: var(--border-radius);
-	padding: 3px 8px;
-	font-weight: bold;
+	color: red;
 }
 
 #btn-notifications {
-	font-size: 1.3rem;
-	font-weight: 200;
+	font-size: 1.4rem;
+	color: var(--color-gray-dark);
+	margin: auto;
+}
+
+.notification-wrapper {
+	position: relative;
+	display: flex;
+  	justify-content: center; 
+  	align-items: center;
+}
+
+.notification-badge {
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	top: -5px;
+	right: -5px;
+	background-color: red;
+	color: white;
+	font-size: 0.5rem;
+	font-weight: bold;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 #profileImage {
@@ -79,7 +120,8 @@ nav {
 
 @media (max-width: 850px) {
 	#btn-notifications {
-		font-size: 1.4rem;
+		font-size: 1.5rem;
 		transition: none;
 	}
 }
+
